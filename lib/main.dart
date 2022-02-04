@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
     Transaction(
         id: "t2",
         title: "Conta de Energia",
-        value: 95.89,
+        value: 195.89,
         date: DateTime.now()),
   ];
 
@@ -74,9 +74,21 @@ class HomePage extends StatelessWidget {
                     ),
                     //Título e Data
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget> [
-                        Text(transaction.title),
-                        Text(transaction.date.toString())
+                        Text(
+                          transaction.title,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        Text(
+                          transaction.date.toString(),
+                          style: TextStyle(
+                            color: Colors.grey
+                          ),
+                        )
                       ],
                     )
                   ],
