@@ -35,7 +35,6 @@ class HomePage extends StatelessWidget {
         title: const Text("Despesas Pessoais"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -50,53 +49,71 @@ class HomePage extends StatelessWidget {
             ..._transations.map((transaction) {
               return Card(
                 child: Row(
-                  children: <Widget> [
+                  children: <Widget>[
                     //Valor da transação
                     Container(
                       margin: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 10
-                      ),
+                          horizontal: 15, vertical: 10),
                       decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.deepPurpleAccent,
-                          width: 2
-                        )
-                      ),
+                          border: Border.all(
+                              color: Colors.deepPurpleAccent, width: 2)),
                       padding: const EdgeInsets.all(10),
                       child: Text(
                         transaction.value.toString(),
                         style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.deepPurpleAccent
-                        ),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.deepPurpleAccent),
                       ),
                     ),
                     //Título e Data
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget> [
+                      children: <Widget>[
                         Text(
                           transaction.title,
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold
-                          ),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           DateFormat("d MMM y").format(transaction.date),
-                          style: TextStyle(
-                            color: Colors.grey
-                          ),
+                          style: TextStyle(color: Colors.grey),
                         )
                       ],
-                    )
+                    ),
                   ],
                 ),
               );
             }).toList(),
           ]),
+          Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Título'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Título'),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: Text('Cadastrar'),
+                        onPressed: () {}, 
+                        style: TextButton.styleFrom(
+                          primary: Colors.deepPurpleAccent
+                        )
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
