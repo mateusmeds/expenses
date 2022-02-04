@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.all(10),
                       child: Text(
-                        transaction.value.toString(),
+                        "R\$ ${transaction.value.toString()}",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
