@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           Container(
             width: double.infinity,
-            child: Card(
+            child: const Card(
               color: Colors.blue,
               child: Text("Gráfico de Gastos"),
               elevation: 5,
@@ -47,7 +47,41 @@ class HomePage extends StatelessWidget {
           ),
           Column(children: <Widget>[
             ..._transations.map((transaction) {
-              return Card(child: Text(transaction.title));
+              return Card(
+                child: Row(
+                  children: <Widget> [
+                    //Valor da transação
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 10
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.deepPurpleAccent,
+                          width: 2
+                        )
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        transaction.value.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.deepPurpleAccent
+                        ),
+                      ),
+                    ),
+                    //Título e Data
+                    Column(
+                      children: <Widget> [
+                        Text(transaction.title),
+                        Text(transaction.date.toString())
+                      ],
+                    )
+                  ],
+                ),
+              );
             }).toList(),
           ]),
         ],
