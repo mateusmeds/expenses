@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 main() {
-  runApp(ExpenseApp());
+  runApp(const ExpenseApp());
 }
 
 class ExpenseApp extends StatelessWidget {
@@ -16,6 +16,9 @@ class ExpenseApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transations = [
     Transaction(
         id: "t1", title: "Internet", value: 86.45, date: DateTime.now()),
@@ -26,17 +29,17 @@ class HomePage extends StatelessWidget {
         date: DateTime.now()),
   ];
 
-  HomePage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Despesas Pessoais"),
       ),
+      //Todos os componentes estão dentro do Column
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          //Gráfico de despesas por dia na semana atual
           Container(
             width: double.infinity,
             child: const Card(
@@ -45,6 +48,7 @@ class HomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
+          //Lista de transações/gastos
           Column(children: <Widget>[
             ..._transations.map((transaction) {
               return Card(
@@ -55,29 +59,32 @@ class HomePage extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 10),
                       decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.deepPurpleAccent, width: 2)),
+                        border: Border.all(
+                            color: Colors.purple, width: 2),
+                      ),
                       padding: const EdgeInsets.all(10),
                       child: Text(
                         "R\$ ${transaction.value.toString()}",
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            color: Colors.deepPurpleAccent),
+                            color: Colors.purple),
                       ),
                     ),
                     //Título e Data
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        //Título
                         Text(
                           transaction.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
+                        //Data
                         Text(
                           DateFormat("d MMM y").format(transaction.date),
-                          style: TextStyle(color: Colors.grey),
+                          style: const TextStyle(color: Colors.grey),
                         )
                       ],
                     ),
@@ -86,27 +93,35 @@ class HomePage extends StatelessWidget {
               );
             }).toList(),
           ]),
+          //Formulário de cadastro de transação
           Card(
             elevation: 5,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
+                  //Campo de título
                   TextField(
-                    decoration: InputDecoration(labelText: 'Título'),
+                    controller: titleController,
+                    decoration: const InputDecoration(labelText: 'Título'),
                   ),
+                  //Campo de valor
                   TextField(
-                    decoration: InputDecoration(labelText: 'Título'),
+                    controller: valueController,
+                    decoration: const InputDecoration(labelText: 'Valor (R\$)'),
                   ),
+                  //Botão de cadastrar
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        child: Text('Cadastrar'),
-                        onPressed: () {}, 
+                        child: const Text('Cadastrar'),
+                        onPressed: () {
+                          debugPrint("Título -> ${titleController.text}");
+                          debugPrint("Valor (R\$) -> ${valueController.text}");
+                        },
                         style: TextButton.styleFrom(
-                          primary: Colors.deepPurpleAccent
-                        )
+                            primary: Colors.purple),
                       ),
                     ],
                   )
