@@ -44,6 +44,7 @@ class _TransactionUserState extends State<TransactionUser> {
     return Column(
       children: [
         TransactionList(_transactions),
+        //Passando a função para receber os dados do componente filho ao executar a chamada da função
         TransactionForm(_addTransaction),
       ],
     );
