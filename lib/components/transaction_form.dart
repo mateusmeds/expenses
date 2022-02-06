@@ -47,7 +47,11 @@ class TransactionForm extends StatelessWidget {
                     //Essa função aqui faz oq?
                     //Quando passo do TransactionUser para aqui eu estou passando uma referência?
                     //Quando essa função é executada está executando a função do TransactionUser?
-                    //Que tal debugar amanhã?
+
+                    //Acho que entendi
+                    //Quando o usuário clicar em nova transação a função é executada
+                    //Está fazendo a chamada da função e está passando esses dados para dentro da função
+                    //que está no componente pai (TransactionUser)
                     onSubmitForm(title, value);
                   },
                   style: TextButton.styleFrom(primary: Colors.purple),
