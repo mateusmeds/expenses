@@ -25,22 +25,24 @@ class HomePage extends StatelessWidget {
         title: const Text("Despesas Pessoais"),
       ),
       //Todos os componentes estão dentro do Column
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          //Gráfico de despesas por dia na semana atual
-          Container(
-            width: double.infinity,
-            child: const Card(
-              color: Colors.blue,
-              child: Text("Gráfico de Gastos"),
-              elevation: 5,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            //Gráfico de despesas por dia na semana atual
+            Container(
+              width: double.infinity,
+              child: const Card(
+                color: Colors.blue,
+                child: Text("Gráfico de Gastos"),
+                elevation: 5,
+              ),
             ),
-          ),
-          //Lista de transações
-          //Formulário de cadastro de transação
-          TransactionUser()
-        ],
+            //Lista de transações
+            //Formulário de cadastro de transação
+            TransactionUser()
+          ],
+        ),
       ),
     );
   }

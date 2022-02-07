@@ -15,9 +15,37 @@ class TransactionUser extends StatefulWidget {
 class _TransactionUserState extends State<TransactionUser> {
   final _transactions = [
     Transaction(
-        id: "t1", title: "Internet", value: 86.45, date: DateTime.now()),
+        id: "t1",
+        title: "Conta de Energia",
+        value: 195.89,
+        date: DateTime.now()),
     Transaction(
         id: "t2",
+        title: "Conta de Energia",
+        value: 195.89,
+        date: DateTime.now()),
+    Transaction(
+        id: "t3",
+        title: "Conta de Energia",
+        value: 195.89,
+        date: DateTime.now()),
+    Transaction(
+        id: "t4",
+        title: "Conta de Energia",
+        value: 195.89,
+        date: DateTime.now()),
+    Transaction(
+        id: "t5",
+        title: "Conta de Energia",
+        value: 195.89,
+        date: DateTime.now()),
+    Transaction(
+        id: "t6",
+        title: "Conta de Energia",
+        value: 195.89,
+        date: DateTime.now()),
+    Transaction(
+        id: "t7",
         title: "Conta de Energia",
         value: 195.89,
         date: DateTime.now()),
@@ -30,7 +58,7 @@ class _TransactionUserState extends State<TransactionUser> {
       value: value,
       date: DateTime.now(),
     );
-    
+
     debugPrint("Título -> $title");
     debugPrint("Valor (R\$) -> $value");
 
@@ -43,9 +71,9 @@ class _TransactionUserState extends State<TransactionUser> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TransactionList(_transactions),
         //Passando a função para receber os dados do componente filho ao executar a chamada da função
         TransactionForm(_addTransaction),
+        TransactionList(_transactions),
       ],
     );
   }
