@@ -12,54 +12,56 @@ class TransactionList extends StatelessWidget {
     return Container(
       height: 335,
       child: ListView.builder(
-        //Quantidade de itens que vai ter na lista
-        itemCount: _transactions.length,
-        
-        itemBuilder: (ctx, index) {
+          //Quantidade de itens que vai ter na lista
+          itemCount: _transactions.length,
+          itemBuilder: (ctx, index) {
+            final transaction = _transactions[index];
 
-          final transaction = _transactions[index];
-
-          return Card(
-            child: Row(
-              children: <Widget>[
-                //Valor da transação
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.purple, width: 2),
-                  ),
-                  padding: const EdgeInsets.all(10),
-                  child: Text(
-                    "R\$ ${transaction.value.toStringAsFixed(2)}",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.purple),
-                  ),
-                ),
-                //Título e Data
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    //Título
-                    Text(
-                      transaction.title,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
+            return Card(
+              child: Row(
+                children: <Widget>[
+                  //Valor da transação
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        //Setando a cor primária do tema
+                        color: Theme.of(context).primaryColor,
+                        width: 2
+                      ),
                     ),
-                    //Data
-                    Text(
-                      DateFormat("d MMM y").format(transaction.date),
-                      style: const TextStyle(color: Colors.grey),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          );
-        }
-      ),
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      "R\$ ${transaction.value.toStringAsFixed(2)}",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          //Setando a cor primária do tema
+                          color: Theme.of(context).primaryColor),
+                    ),
+                  ),
+                  //Título e Data
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      //Título
+                      Text(
+                        transaction.title,
+                        //Pegando estilização da headline6 dentro de ThemeData -> textTheme
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      //Data
+                      Text(
+                        DateFormat("d MMM y").format(transaction.date),
+                        style: const TextStyle(color: Colors.grey),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            );
+          }),
     );
   }
 }

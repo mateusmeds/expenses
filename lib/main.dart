@@ -15,7 +15,20 @@ class ExpenseApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: HomePage());
+    return MaterialApp(
+      home: HomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+          headline6: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 19,
+            fontWeight: FontWeight.bold
+          )
+        ),
+      ),
+    );
   }
 }
 
@@ -95,12 +108,18 @@ class _HomePageState extends State<HomePage> {
     Navigator.of(context).pop();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Despesas Pessoais"),
+        title: const Text(
+          'Despesas Pessoais',
+          style: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
