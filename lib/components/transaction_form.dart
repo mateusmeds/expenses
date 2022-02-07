@@ -27,6 +27,8 @@ class TransactionForm extends StatelessWidget {
             //Campo de valor
             TextField(
               controller: valueController,
+              //Dessa forma funciona tanto para iOS e Android
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
               decoration: const InputDecoration(labelText: 'Valor (R\$)'),
             ),
             //Botão de cadastrar
