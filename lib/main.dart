@@ -78,8 +78,11 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _transactions.add(newTransaction);
     });
+
+    _closeTransactionFormModal(context);
   }
 
+  ///Função responsável por abrir a modal
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
@@ -87,6 +90,12 @@ class _HomePageState extends State<HomePage> {
           return TransactionForm(_addTransaction);
         });
   }
+
+  ///Função responsável por fechar a modal
+  _closeTransactionFormModal(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
 
   @override
   Widget build(BuildContext context) {

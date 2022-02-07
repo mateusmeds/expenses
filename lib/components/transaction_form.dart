@@ -14,7 +14,7 @@ class _TransactionFormState extends State<TransactionForm> {
   final titleController = TextEditingController();
 
   final valueController = TextEditingController();
-
+  
   @override
   Widget build(BuildContext context) {
     return Card(
