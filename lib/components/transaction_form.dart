@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
-class TransactionForm extends StatelessWidget {
-
-  final titleController = TextEditingController();
-  final valueController = TextEditingController();
+class TransactionForm extends StatefulWidget {
 
   final void Function(String, double) onSubmitForm;
 
   TransactionForm(this.onSubmitForm, {Key? key}) : super(key: key);
 
+  @override
+  State<TransactionForm> createState() => _TransactionFormState();
+}
 
+class _TransactionFormState extends State<TransactionForm> {
+  final titleController = TextEditingController();
+
+  final valueController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class TransactionForm extends StatelessWidget {
                     //Quando o usuário clicar em nova transação a função é executada
                     //Está fazendo a chamada da função e está passando esses dados para dentro da função
                     //que está no componente pai (TransactionUser)
-                    onSubmitForm(title, value);
+                    widget.onSubmitForm(title, value);
                   },
                   style: TextButton.styleFrom(primary: Colors.purple),
                 ),
