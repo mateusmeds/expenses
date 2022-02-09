@@ -10,7 +10,7 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 335,
+      height: 320,
       padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
       child: _transactions.isEmpty
           ? Column(children: <Widget>[
@@ -34,46 +34,28 @@ class TransactionList extends StatelessWidget {
                 final transaction = _transactions[index];
 
                 return Card(
-                  child: Row(
-                    children: <Widget>[
-                      //Valor da transação
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              //Setando a cor primária do tema
-                              color: Theme.of(context).primaryColor,
-                              width: 2),
-                        ),
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          "R\$ ${transaction.value.toStringAsFixed(2)}",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              //Setando a cor primária do tema
-                              color: Theme.of(context).primaryColor),
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 5,
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: FittedBox(
+                          child: Text("R\$ ${transaction.value}"),
                         ),
                       ),
-                      //Título e Data
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          //Título
-                          Text(
-                            transaction.title,
-                            //Pegando estilização da headline6 dentro de ThemeData -> textTheme
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          //Data
-                          Text(
-                            DateFormat("d MMM y").format(transaction.date),
-                            style: const TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      ),
-                    ],
+                    ),
+                    title: Text(
+                      transaction.title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    subtitle: Text(
+                      DateFormat('d MMM y').format(transaction.date),
+                    ),
                   ),
                 );
               }),
