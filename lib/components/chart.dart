@@ -54,7 +54,7 @@ class Chart extends StatelessWidget {
         'day': firstLetterDay,
         'value': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   @override
