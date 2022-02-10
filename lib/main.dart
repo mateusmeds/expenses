@@ -37,68 +37,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-      id: "t1",
-      title: "Conta de Energia",
-      value: 80.5,
-      date: DateTime.now().subtract(Duration(days: 1)),
-    ),
-    Transaction(
-      id: "t2",
-      title: "Conta de água",
-      value: 20.5,
-      date: DateTime.now().subtract(Duration(days: 2)),
-    ),
-    Transaction(
-      id: "t3",
-      title: "Conta de Internet",
-      value: 30.5,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    Transaction(
-      id: "t3",
-      title: "Conta de Internet",
-      value: 70.5,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    Transaction(
-      id: "t3",
-      title: "Conta de Internet",
-      value: 30.5,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    Transaction(
-      id: "t3",
-      title: "Conta de Internet",
-      value: 80.5,
-      date: DateTime.now().subtract(Duration(days: 2)),
-    ),
-    Transaction(
-      id: "t4",
-      title: "Restaurante",
-      value: 40.5,
-      date: DateTime.now().subtract(Duration(days: 4)),
-    ),
-    Transaction(
-      id: "t5",
-      title: "TV a cabo",
-      value: 50.5,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "t6",
-      title: "IPTU",
-      value: 60.5,
-      date: DateTime.now().subtract(Duration(days: 5)),
-    ),
-    Transaction(
-      id: "t7",
-      title: "IPVA",
-      value: 70.5,
-      date: DateTime.now().subtract(Duration(days: 6)),
-    ),
-  ];
+  final List<Transaction> _transactions = [];
 
   ///Retorna a lista de transações dos últimos 7 dias
   List<Transaction> get _recentTransactions {
@@ -114,22 +53,30 @@ class _HomePageState extends State<HomePage> {
     }).toList();
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
+
+    if (title.isEmpty || value <= 0 || date == null) {
+      return;
+    }
+
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
-
-    debugPrint("Título -> $title");
-    debugPrint("Valor (R\$) -> $value");
 
     setState(() {
       _transactions.add(newTransaction);
     });
 
     _closeTransactionFormModal(context);
+  }
+
+  _deleteTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((transaction) => transaction.id == id);
+    });
   }
 
   ///Função responsável por abrir a modal
@@ -171,7 +118,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             //Gráfico de despesas por dia na semana atual
             Chart(_recentTransactions),
-            TransactionList(_transactions),
+            TransactionList(_transactions, _deleteTransaction),
           ],
         ),
       ),
