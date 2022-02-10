@@ -73,6 +73,12 @@ class _HomePageState extends State<HomePage> {
     _closeTransactionFormModal(context);
   }
 
+  _deleteTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((transaction) => transaction.id == id);
+    });
+  }
+
   ///Função responsável por abrir a modal
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
@@ -112,7 +118,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             //Gráfico de despesas por dia na semana atual
             Chart(_recentTransactions),
-            TransactionList(_transactions),
+            TransactionList(_transactions, _deleteTransaction),
           ],
         ),
       ),
