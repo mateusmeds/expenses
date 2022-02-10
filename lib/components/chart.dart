@@ -47,9 +47,6 @@ class Chart extends StatelessWidget {
       //Primeira letra do nome do dia da semana.
       String firstLetterDay = DateFormat.E().format(weekDay)[0];
 
-      debugPrint(firstLetterDay);
-      debugPrint(totalSum.toString());
-
       return {
         'day': firstLetterDay,
         'value': totalSum,
@@ -73,7 +70,7 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 label: transaction['day'].toString(),
                 value: transaction['value'] as double,
-                percentage: (transaction['value'] as double) / totalExpenseWeek,
+                percentage: totalExpenseWeek == 0 ? 0 : (transaction['value'] as double) / totalExpenseWeek,
               ),
             );
           }).toList(),
